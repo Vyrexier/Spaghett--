@@ -1,64 +1,95 @@
-Spaghett--
+# Spaghett--
 
-Code all night, still not right.
-Think it's fine — runtime decline.
-One more fix, now it's twenty-six.
-Compile and pray. That's the way.
+> *Code all night, still not right.*  
+> *Think it's fine — runtime decline.*  
+> *One more fix, now it's twenty-six.*  
+> *Compile and pray. That's the way.*
 
+---
 
-Spaghett-- is a dynamically-typed scripting language with syntax inspired by Lua — written for those who believe other languages compile too fast, run too clean, and crash too politely.
+**Spaghett--** is a dynamically-typed scripting language with syntax inspired by Lua — written for those who believe other languages compile too fast, run too clean, and crash too politely.
+
 While the rest of the world ships optimized runtimes, Spaghett-- is still thinking about it.
 
-Features
+---
 
-Lua-like syntax — familiar enough to hurt
-local scoping — variables that know their place
-First-class functions and closures
-Tables as the one true data structure
-Coroutines with spawn, yield, wait, and wrap
-pcall for errors you saw coming
-os.clock() — to measure how long you've suffered
+## Features
 
+- Lua-like syntax — familiar enough to hurt
+- `local` scoping — variables that know their place
+- First-class functions and closures
+- Tables as the one true data structure
+- Coroutines with `spawn`, `yield`, `wait`, and `wrap`
+- `pcall` for errors you saw coming
+- `os.clock()` — to measure how long you've suffered
 
-Syntax Overview
-Variables
-lualocal x = 42
+---
+
+## Syntax Overview
+
+### Variables
+
+```lua
+local x = 42
 local name = "Spaghett"
 local flag = true
 local nothing = null
-Arithmetic & String Concatenation
-lualocal a = 10
+```
+
+### Arithmetic & String Concatenation
+
+```lua
+local a = 10
 local b = 3
 printl(a + b)   -- 13
 printl(a % b)   -- 1
 printl("Spaghett" .. " v" .. "1.0")  -- Spaghett v1.0
-Conditionals
-luaif x > 5 then
+```
+
+### Conditionals
+
+```lua
+if x > 5 then
     print("big")
 elseif x == 5 then
     print("exact")
 else
     print("small")
 end
-Loops
-While:
-lualocal i = 1
+```
+
+### Loops
+
+**While:**
+```lua
+local i = 1
 while i <= 3 do
     print(i)
     i = i + 1
 end
-For — start, stop, step:
-luafor i = 1, 5, 1 do
+```
+
+**For** — `start, stop, step`:
+```lua
+for i = 1, 5, 1 do
     print(i)
 end
-Functions
-luafunc add(a, b)
+```
+
+### Functions
+
+```lua
+func add(a, b)
     return a + b
 end
 
 print(add(3, 4))  -- 7
-Closures
-luafunc makeCounter()
+```
+
+### Closures
+
+```lua
+func makeCounter()
     local count = 0
     return func()
         count = count + 1
@@ -70,21 +101,35 @@ local counter = makeCounter()
 printl(counter())  -- 1
 printl(counter())  -- 2
 printl(counter())  -- 3
-Tables
-lualocal t = {x = 1, y = 2}
+```
+
+### Tables
+
+```lua
+local t = {x = 1, y = 2}
 printl(t.x)   -- 1
 t.z = 3
 printl(t.z)   -- 3
-Error Handling
-lualocal ok, err = pcall(func()
+```
+
+### Error Handling
+
+```lua
+local ok, err = pcall(func()
     error("something went wrong")
 end)
 printl(ok)   -- false
 printl(err)  -- something went wrong
+```
 
-Coroutines
+---
+
+## Coroutines
+
 Spaghett-- supports cooperative concurrency through a coroutine system.
-lua-- Create and resume
+
+```lua
+-- Create and resume
 local co = coroutine.create(func()
     printl("step 1")
     coroutine.yield()
@@ -120,21 +165,41 @@ coroutine.spawn(func()
     coroutine.wait(0)
     printl("B end")
 end)
+```
 
-Standard Library (Partial)
-FunctionDescriptionprint(x)Print without newlineprintl(x)Print with newlineerror(msg)Raise a runtime errorpcall(fn)Protected call — returns ok, erros.clock()Returns CPU time in secondscoroutine.create(fn)Create a coroutinecoroutine.resume(co)Resume a coroutinecoroutine.yield()Suspend current coroutinecoroutine.status(co)"suspended", "running", or "dead"coroutine.wrap(fn)Wrap coroutine as a callablecoroutine.spawn(fn)Spawn a concurrent taskcoroutine.wait(n)Yield for n ticks
+---
 
-Philosophy
+## Standard Library (Partial)
 
-Write with care — bugs everywhere.
-Code with grace — crash in your face.
+| Function | Description |
+|---|---|
+| `print(x)` | Print without newline |
+| `printl(x)` | Print with newline |
+| `error(msg)` | Raise a runtime error |
+| `pcall(fn)` | Protected call — returns `ok, err` |
+| `os.clock()` | Returns CPU time in seconds |
+| `coroutine.create(fn)` | Create a coroutine |
+| `coroutine.resume(co)` | Resume a coroutine |
+| `coroutine.yield()` | Suspend current coroutine |
+| `coroutine.status(co)` | `"suspended"`, `"running"`, or `"dead"` |
+| `coroutine.wrap(fn)` | Wrap coroutine as a callable |
+| `coroutine.spawn(fn)` | Spawn a concurrent task |
+| `coroutine.wait(n)` | Yield for `n` ticks |
 
-Spaghett-- does not promise speed.
-It does not promise stability.
-It promises character — and the quiet satisfaction of a runtime error at 2 AM that you almost deserve.
+---
 
-First version I have a lot of vector outof bound problem so I still keep it on my github :)
+## Philosophy
 
-License
-Do whatever you want. We're not going to stop you.
+> *Write with care — bugs everywhere.*  
+> *Code with grace — crash in your face.*
+
+Spaghett-- does not promise speed.  
+It does not promise stability.  
+It promises **character** — and the quiet satisfaction of a runtime error at 2 AM that you almost deserve.
+
+---
+
+## License
+
+Do whatever you want. We're not going to stop you.  
 We're still stuck on a segfault from last Thursday.
